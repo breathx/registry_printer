@@ -43,6 +43,14 @@ pub fn print_registry(registry: Registry) {
     println!("  {} {}\n", ">>".blue(), "JSON".white().italic());
     println!("{}\n", json.green().italic());
 
-    println!("  {} {}\n", ">>".blue(), "PRETTY JSON".white().italic());
+    println!("  {} {}\n", ">>".blue(), "KNOWN TYPES".white().italic());
+    for ty in registry.types() {
+        let res = ty.ty().path().segments().join("::");
+        if !res.is_empty() {
+            println!("{}", format!("'{res}'").green().italic());
+        }
+    }
+
+    println!("\n  {} {}\n", ">>".blue(), "PRETTY JSON".white().italic());
     println!("{}\n", pretty_json.green().italic());
 }
